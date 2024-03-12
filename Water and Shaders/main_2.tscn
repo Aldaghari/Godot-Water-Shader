@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://vruloyn516vc"]
+
+[ext_resource type="Script" path="res://main_2.gd" id="1_kyreb"]
+[ext_resource type="Texture2D" uid="uid://cu0rge6qf0eev" path="res://magic-cliffs2.png" id="1_ly4bp"]
+[ext_resource type="Shader" path="res://WaterReflection.gdshader" id="2_f13g8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ohbhf"]
+noise_type = 3
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uddkf"]
+invert = true
+seamless = true
+noise = SubResource("FastNoiseLite_ohbhf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vqut"]
+shader = ExtResource("2_f13g8")
+shader_parameter/waterColor = Color(0, 0, 0.0901961, 0.0117647)
+shader_parameter/distortionScale = Vector2(1.34, -0.281)
+shader_parameter/intesity = 0.0130001
+shader_parameter/speed = 0.098
+shader_parameter/waveAmpt = 0.044
+shader_parameter/waveSpeed = 0.002
+shader_parameter/wavePeriod = 20.0
+shader_parameter/noise = SubResource("NoiseTexture2D_uddkf")
+
+[node name="Main2" type="Node2D"]
+script = ExtResource("1_kyreb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+texture = ExtResource("1_ly4bp")
+centered = false
+
+[node name="Reverse" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2vqut")
+position = Vector2(345, 301)
+texture = ExtResource("1_ly4bp")
+flip_v = true

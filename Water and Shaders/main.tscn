@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://lschxtw2jojx"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_fy6ou"]
+[ext_resource type="PackedScene" uid="uid://6puag05hm3ec" path="res://sprite_2d.tscn" id="1_hk3ew"]
+[ext_resource type="Shader" path="res://WaterReflection.gdshader" id="3_4753k"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ohbhf"]
+noise_type = 3
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uddkf"]
+invert = true
+seamless = true
+noise = SubResource("FastNoiseLite_ohbhf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vqut"]
+shader = ExtResource("3_4753k")
+shader_parameter/waterColor = Color(0, 0, 0.0901961, 0.0117647)
+shader_parameter/distortionScale = Vector2(1.34, -0.281)
+shader_parameter/intesity = 0.0130001
+shader_parameter/speed = 0.098
+shader_parameter/waveAmpt = 0.044
+shader_parameter/waveSpeed = 0.002
+shader_parameter/wavePeriod = 20.0
+shader_parameter/noise = SubResource("NoiseTexture2D_uddkf")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_fy6ou")
+
+[node name="Reverse" parent="." instance=ExtResource("1_hk3ew")]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2vqut")
+position = Vector2(603, 861)
+rotation = 3.14159
+scale = Vector2(0.395, 0.282)
+centered = true
+flip_h = true
+
+[node name="Sprite2D" parent="." instance=ExtResource("1_hk3ew")]
+texture_filter = 1
+scale = Vector2(0.394384, 0.2809)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -50.0
+offset_top = 554.0
+offset_right = 1272.0
+offset_bottom = 602.0
+color = Color(0, 0, 0, 1)

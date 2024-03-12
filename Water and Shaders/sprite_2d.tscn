@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://6puag05hm3ec"]
+
+[ext_resource type="Texture2D" uid="uid://xdy711g6yxxr" path="res://Sheesh.png" id="1_hueex"]
+
+[node name="Sprite2D" type="Sprite2D"]
+scale = Vector2(0.628, 0.53)
+texture = ExtResource("1_hueex")
+centered = false
